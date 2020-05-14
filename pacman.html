@@ -41,7 +41,10 @@
         .brick-div {
           background-color: firebrick;
           width: 50px;
-          height: 50px
+          height: 50px;
+          position: absolute;
+          top: 100px;
+          left: 100px;
         }
     </style>
     <script>
@@ -60,29 +63,20 @@
 
           // ESERCIZIO 3
             $(".btn-move").click(on_move_click);
-            //*TO-DO - Sistemare animazione
-          
+
           // ESERCIZIO 4
             $("#pac-man").click(movearound_click);
 
           // ESERCIZIO 5
             $(".btn-acid").click(acid_click);
-            //*TO-DO - Più acido
-
+ 
           // ESERCIZIO 6
             $(".btn-secondary").click(death_click);
             //*TO-DO - Più morte
 
           // ESERCIZIO 7
-            
-            $(".btn-down").click(move_down);
-            $(".btn-up").click(move_up);
-            $(".btn-left").click(move_left);
-            $(".btn-right").click(move_right);
-          //*TO-DO - Da usare tasti
 
           // ESERCIZIO 8
-
             $(document).ready(blocksDiv());
 
           // ESERCIZIO 9
@@ -136,10 +130,6 @@
                 The original Japanese title of Puck Man was changed to Pac-Man for international releases as a preventative measure against defacement of the arcade machines by changing the P to an F.</p>
             <p>
               <a href="#" class="btn btn-primary my-2 btn-move">Muoviti</a>
-                <a href="#" class="btn btn-primary btn-up">Su</a>
-                <a href="#" class="btn btn-primary btn-down">Giù</a>
-                <a href="#" class="btn btn-primary btn-left">Sinistra</a>
-                <a href="#" class="btn btn-primary btn-right">Destra</a>
               <a href="#" class="btn btn-info my-2 btn-acid">Acido 🌈</a>
               <a href="#" class="btn btn-secondary my-2 btn-death">Muori! ☠</a>
             </p>
