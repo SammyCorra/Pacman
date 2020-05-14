@@ -1,0 +1,222 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>PacMan 👻</title>
+    <script src="https://code.jquery.com/jquery-3.5.0.min.js" integrity="sha256-xNzN2a4ltkB44Mc/Jz3pT4iU1cmeR0FkXs4pru/JxaQ=" crossorigin="anonymous"></script>
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css" integrity="sha384-Vkoo8x4CGsO3+Hhxv8T/Q5PaXtkKtu6ug5TOeNV6gBiFeWPGFN9MuhOf23Q9Ifjh" crossorigin="anonymous">
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/js/bootstrap.min.js" integrity="sha384-wfSDF2E50Y2D1uUdj0O3uMBJnjuUD4Ih7YwaYd1iqfktj0Uod8GCExl3Og8ifwB6" crossorigin="anonymous"></script>
+    
+    <script src="pacman_es1.js"></script>
+    <script src="pacman_es2.js"></script>
+    <script src="pacman_es3.js"></script>
+    <script src="pacman_es4.js"></script>
+    <script src="pacman_es5.js"></script>
+    <script src="pacman_es6.js"></script>
+    <script src="pacman_es7.js"></script>
+    <script src="pacman_es8.js"></script>
+    <!--
+      <script src="pacman_es8.js"></script>
+      <script src="pacman_es9.js"></script>
+      <script src="pacman_es10.js"></script>
+    -->
+    
+
+    <style>
+        #game-board {
+            min-height: 300px;
+            overflow: overlay;
+        }
+        #pac-man {
+            width: 50px;
+            height: 50px;
+            background: url(assets/images/pacman.gif) no-repeat;
+            background-size: cover;
+            transition: transform 1s, -webkit-transform 1s, filter 1s, -webkit-filter 1s;
+            -webkit-transition: transform 1s, -webkit-transform 1s, filter 1s, -webkit-filter 1s;
+            -moz-transition: transform 1s, -webkit-transform 1s, filter 1s, -webkit-filter 1s;
+            -o-transition: transform 1s, -webkit-transform 1s, filter 1s, -webkit-filter 1s;
+        }
+        .brick-div {
+          background-color: firebrick;
+          width: 50px;
+          height: 50px
+        }
+    </style>
+    <script>
+        $(() => {
+            $("#exercise-toggler").click(function(){
+                $("#exercise-list").slideToggle();
+            });
+
+          
+
+          // ESERCIZIO 1
+            //$(".btn-move").click(short_move_click);
+
+          // ESERCIZIO 2
+            //$(".btn-move").click(long_move_click);
+
+          // ESERCIZIO 3
+            $(".btn-move").click(on_move_click);
+            //*TO-DO - Sistemare animazione
+          
+          // ESERCIZIO 4
+            $("#pac-man").click(movearound_click);
+
+          // ESERCIZIO 5
+            $(".btn-acid").click(acid_click);
+            //*TO-DO - Più acido
+
+          // ESERCIZIO 6
+            $(".btn-secondary").click(death_click);
+            //*TO-DO - Più morte
+
+          // ESERCIZIO 7
+            
+            $(".btn-down").click(move_down);
+            $(".btn-up").click(move_up);
+            $(".btn-left").click(move_left);
+            $(".btn-right").click(move_right);
+          //*TO-DO - Da usare tasti
+
+          // ESERCIZIO 8
+
+            $(document).ready(blocksDiv());
+
+          // ESERCIZIO 9
+
+          // ESERCIZIO 10
+        
+});
+
+    </script>
+
+
+</head>
+<body>
+    <header>
+        <div class="collapse bg-dark" id="navbarHeader">
+          <div class="container">
+            <div class="row">
+              <div class="col-sm-8 col-md-7 py-4">
+                <h4 class="text-white">About</h4>
+                <p class="text-muted">Add some information about the album below, the author, or any other background context. Make it a few sentences long so folks can pick up some informative tidbits. Then, link them off to some social networking sites or contact information.</p>
+              </div>
+              <div class="col-sm-4 offset-md-1 py-4">
+                <h4 class="text-white">Contact</h4>
+                <ul class="list-unstyled">
+                  <li><a href="#" class="text-white">Follow on Twitter</a></li>
+                  <li><a href="#" class="text-white">Like on Facebook</a></li>
+                  <li><a href="#" class="text-white">Email me</a></li>
+                </ul>
+              </div>
+            </div>
+          </div>
+        </div>
+        <div class="navbar navbar-dark bg-dark box-shadow">
+          <div class="container d-flex justify-content-between">
+            <a href="#" class="navbar-brand d-flex align-items-center">
+              <strong>PacMan 👻</strong>
+            </a>
+            <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarHeader" aria-controls="navbarHeader" aria-expanded="false" aria-label="Toggle navigation">
+              <span class="navbar-toggler-icon"></span>
+            </button>
+          </div>
+        </div>
+      </header>
+  
+      <main role="main">
+  
+        <section class="jumbotron text-center">
+          <div class="container">
+            <h1 class="jumbotron-heading">パックマン</h1>
+            <p class="lead text-muted">Pac-Man[a] is a maze arcade game developed and released by Namco in 1980.<br>
+                The original Japanese title of Puck Man was changed to Pac-Man for international releases as a preventative measure against defacement of the arcade machines by changing the P to an F.</p>
+            <p>
+              <a href="#" class="btn btn-primary my-2 btn-move">Muoviti</a>
+                <a href="#" class="btn btn-primary btn-up">Su</a>
+                <a href="#" class="btn btn-primary btn-down">Giù</a>
+                <a href="#" class="btn btn-primary btn-left">Sinistra</a>
+                <a href="#" class="btn btn-primary btn-right">Destra</a>
+              <a href="#" class="btn btn-info my-2 btn-acid">Acido 🌈</a>
+              <a href="#" class="btn btn-secondary my-2 btn-death">Muori! ☠</a>
+            </p>
+          </div>
+        </section>
+  
+        <div class="album py-5 bg-light">
+          <div class="container">
+            <div class="row">
+                <div class="col">
+                    <div id="game-board">
+                        <div id="pac-man"></div>
+                    </div>
+                    <div id="exercise-toggler" class="btn btn-info btn-sm">Esercizi 📚📙📗📖</div>
+                    <div id="exercise-list" class="mt-3" style="display: none;">
+<pre>
+<strong>Esercizio 1:</strong>
+PacMan vive in un div Gameboard. Iniziamo a fare i primi passi
+Proviamo a spostare il pacman di un pochino
+Cliccando il bottone "Muoviti" voglio che venga invocato il metodo css di jQuery su Pacman.
+Voglio settare la proprietà `-webkit-transform` in modo che valga `translate(100px,0px)"`.
+
+<strong>Esercizio 2:</strong>
+PacMan vuole esplorare la gameboard. Proviamo a spostare il pacman all'estrema destra.
+Modificare l'azione collegata al bottone "Muoviti" in modo che si sposti fino alla fine della board.
+Potrebbe tornare utile indagare sulla dimensione di un elemento jQuery. Come si può fare?
+⚠ Attenzione: Pacman non deve superare l'estremità della gameboard. Potrebbe essere fatale...
+
+<strong>Esercizio 3:</strong>
+PacMan vuole tornare indietro. Una volta cliccato il pulsante "Muoviti", il pulsante deve chiamarsi "Torna indietro".
+Al click di "Torna indietro", occorre effettuare una rotazione di 180° e successivamente ritornare al punto (0,0).
+
+<strong>Esercizio 4:</strong>
+Pacman oggi è timido.
+Cliccando su Pacman, deve scomparire.
+Dopo 3-4 secondi può essere che ricompaia in un'altra posizione della gameboard.
+
+<strong>Esercizio 5:</strong>
+Pacman si fa un acido.
+Pacman vuole provare nuove esperienze. Cliccando il pulsante "Acido 🌈", pacman inizia a diventare di altri colori a random ogni secondo.
+Per ricolorarlo può essere utile applicare le proprietà css seguenti:
+-webkit-filter: hue-rotate(90deg);
+filter: hue-rotate(90deg);
+
+<strong>Esercizio 6:</strong>
+Cliccando il pulsante "Muori! ☠", il nostro amico pacman deve iniziare a ruotare su sé stesso. Diventare rosso e poi svanire pian piano.
+
+<strong>Esercizio 7:</strong>
+Rimuovere tramite jQuery il tasto muoviti.
+Al click di un tasto su,giù,destra,sinistra, pacman ruoterà nella direzione selezionata e inizierà a muoversi in quella direzione.
+
+<strong>Esercizio 8:</strong>
+Al caricamento della pagina, creare 20 div 50x50 dentro alla gameboard color mattone in posizioni casuali.
+
+<strong>Esercizio 9:</strong>
+Far sì che se Pacman va a sbattere su uno di questi div, si fermi.
+
+<strong>Esercizio 10:</strong>
+Premendo il tasto "+" viene selezionato il primo di questi div "mattoni".
+Si riconosce un elemento selezionato perché il suo bordo diventa colorato! 🔳
+Premendo ancora e ancora il tasto "+" si seleziona l'elemento successivo.
+Premendo ancora e ancora il tasto "-" si seleziona l'elemento precedente.
+Quando si preme "canc", l'elemento selezionato deve essere rimosso.
+</pre>
+                    </div>
+
+                </div>
+            </div>
+          </div>
+        </div>
+  
+      </main>
+  
+      <footer class="text-muted">
+        <div class="container">
+          <p>Copyright by PacMan</p>
+        </div>
+      </footer>
+</body>
+</html>
